@@ -1,0 +1,6 @@
+// CREATE USER //
+ create user 'cvuser'@'localhost' identified by 'cvuser';
+ grant all on digitalcv.* to 'cvuser'@'localhost';
+
+// INSERTS //
+ INSERT INTO `datos_generales` (`id`, `nombre`, `especialidad`, `correo`, `tel`, `estado`) VALUES (NULL, 'Hugo Gabrial Lopez Flores', 'Ingeniería en Tecnologías de la Información', 'hugoGabriel@yopmail.com', '2469865316', 'Puebla');
