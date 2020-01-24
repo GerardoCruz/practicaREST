@@ -1,0 +1,100 @@
+<hr>
+<div class="row">
+  <div class="col-6">
+    <h1>Experiencias</h1>
+  </div>
+  <div class="col-6">
+    <button type="button" (click)="mostrarNuevaExperiencia()" class="btn btn-info">Agregar</button>
+  </div>
+</div>
+<hr>
+<div *ngIf="experiencias.length > 0 && !mostrarExperienciaNueva && !mostrarEditarExperiencia">
+  <div style=" height:300px;overflow-y:auto;width: 100%;">
+    <div  *ngFor="let experiencia of experiencias;let e=index">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8"> 
+              <div class="row">
+                <div class="col-12">
+                  <h1>{{experiencia.proyecto}}</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <p>Periodo: {{experiencia.periodo}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <p>{{experiencia.descripcion}}</p>
+                </div>
+              </div> 
+            </div>
+            <div class="col-4">
+              <div class="row">
+                <button class="btn btn-block btn-info" (click)="seleccionarExperiencia(e)">Editar</button>
+              </div>
+              <hr>
+              <div class="row">
+                <button class="btn btn-block btn-danger" (click)="eliminar(e)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="experiencias.length == 0 && !mostrarExperienciaNueva && !mostrarEditarExperiencia">
+  No hay experiencias
+</div>
+<div *ngIf="mostrarExperienciaNueva && !mostrarEditarExperiencia">
+  <div >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nueva Experiencia</h5> 
+      </div> 
+      <div class="modal-body">
+          <div class="form-group"> 
+              <input type="text" name="nombreProyecto" [(ngModel)]="experienciaNueva.proyecto" class="form-control" id="proyectoNuevo" placeholder="Nombre"> 
+          </div> 
+          <div class="form-group"> 
+              <input type="text" name="periodoExperiencia" [(ngModel)]="experienciaNueva.periodo" class="form-control" id="peridoNuevo" placeholder="Periodo"> 
+          </div> 
+          <div class="form-group"> 
+              <textarea name="descripcionExperiencia" [(ngModel)]="experienciaNueva.descripcion" class="form-control" id="descripcionNuevo" placeholder="Descripción"></textarea>
+          </div> 
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+          <button class="btn btn-primary" (click)="guardarExperiencia()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div *ngIf="mostrarEditarExperiencia && !mostrarExperienciaNueva">
+  <div >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Experiencia</h5> 
+      </div> 
+      <div class="modal-body">
+          <div class="form-group"> 
+              <input type="text" name="nombreProyecto" [(ngModel)]="experienciaSelect.proyecto" class="form-control" id="proyectoNuevo" placeholder="Nombre"> 
+          </div> 
+          <div class="form-group"> 
+              <input type="text" name="periodoExperiencia" [(ngModel)]="experienciaSelect.periodo" class="form-control" id="peridoNuevo" placeholder="Periodo"> 
+          </div> 
+          <div class="form-group"> 
+              <textarea name="descripcionExperiencia" [(ngModel)]="experienciaSelect.descripcion" class="form-control" id="descripcionNuevo" placeholder="Descripción"></textarea>
+          </div> 
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+          <button class="btn btn-primary" (click)="editarExperiencia()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div> 
